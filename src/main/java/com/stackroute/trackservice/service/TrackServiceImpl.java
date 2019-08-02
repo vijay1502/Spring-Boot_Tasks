@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TrackServiceImple implements TrackService {
+public class TrackServiceImpl implements TrackService {
     private TrackRepository trackRepository;
 
 
     @Autowired
-    public TrackServiceImple(TrackRepository trackRepository){
+    public TrackServiceImpl(TrackRepository trackRepository){
         this.trackRepository=trackRepository;
     }
     @Override
@@ -55,4 +55,10 @@ public Optional<Track> trackDeleteById(int trackId) {
         update.setComments(track.getComments());
         return trackRepository.save(track);
     }
+
+@Override
+    public Track getTrackByName(String trackName){
+    Track trackByName=trackRepository.getTrackByName(trackName);
+    return trackByName;
+}
 }
