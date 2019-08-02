@@ -1,8 +1,9 @@
 package com.stackroute.trackservice.domain;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
 @Entity
 public class Track {
     @Id
