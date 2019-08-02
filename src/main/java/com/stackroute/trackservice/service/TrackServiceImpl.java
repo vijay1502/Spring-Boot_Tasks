@@ -57,8 +57,8 @@ public Optional<Track> trackDeleteById(int trackId) {
     }
 
 @Override
-    public Track getTrackByName(String trackName){
-    Track trackByName=trackRepository.getTrackByName(trackName);
+    public List<Track> getTrackByName(String trackName){
+    List<Track> trackByName=trackRepository.getTrackByName(trackName);
     return trackByName;
 }
 }
