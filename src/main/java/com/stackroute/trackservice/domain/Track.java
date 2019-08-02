@@ -17,12 +17,17 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@PropertySource("application.properties")
 public class Track {
     @Id
+    @Column(name = "trackId")
+    @Value("trackId")
 
     private int trackId;
-
+    @Column(name = "trackName")
+    @Value("${value.trackId}")
     private String trackName;
-
+    @Column(name = "comments")
+    @Value("${value.comments}")
     private String comments;
 }
