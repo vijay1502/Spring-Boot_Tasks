@@ -26,28 +26,23 @@ public class TrackController {
         this.trackService = trackService;
     }
     @PostMapping("track")
-    public ResponseEntity<?> saveTrack(@RequestBody Track track) {
+    public ResponseEntity<?> saveTrack(@RequestBody Track track) throws TrackIdAlreadyExistsException {
         ResponseEntity responseEntity;
-        try {
+
             trackService.saveTrack(track);
             responseEntity=new ResponseEntity(trackService.saveTrack(track),HttpStatus.CREATED);
-        }
-        catch (TrackIdAlreadyExistsException trackIdExists){
-            responseEntity=new ResponseEntity<String>(trackIdExists.getMessage(),HttpStatus.CONFLICT);
-        }
+
+
         return responseEntity;
     }
     @GetMapping("track/{trackId}")
-    public ResponseEntity<?> getTrack(@PathVariable int trackId){
+    public ResponseEntity<?> getTrack(@PathVariable int trackId) throws TrackNotFoundException {
         ResponseEntity responseEntity;
-        try {
+
             trackService.getTrackById(trackId);
             responseEntity=new ResponseEntity(trackService.getTrackById(trackId),HttpStatus.CREATED);
-        }
-        catch (TrackNotFoundException trackNotFound){
-            responseEntity=new ResponseEntity<String>(trackNotFound.getMessage(),HttpStatus.CONFLICT);
-        }
-        return responseEntity;
+
+                return responseEntity;
     }
    /* @GetMapping("tracks/")
     public ResponseEntity<?> getAllTracks(){
@@ -55,52 +50,44 @@ public class TrackController {
         return new ResponseEntity<>(getAllTracks,HttpStatus.CREATED);
     }*/
   @GetMapping("tracks/")
-    public ResponseEntity<?> getAllTracks(){
+    public ResponseEntity<?> getAllTracks() throws Exception {
       ResponseEntity responseEntity;
-      try{
+
       trackService.getAllTracks();
-      responseEntity=new ResponseEntity("SuccessFully Retreived All THe DATA",HttpStatus.CREATED);}
-      catch (Exception ex){
-          responseEntity=new ResponseEntity(ex.getMessage(),HttpStatus.CONFLICT);
-      }
+      responseEntity=new ResponseEntity("SuccessFully Retreived All THe DATA",HttpStatus.CREATED);
+
       return responseEntity;
   }
 
   @DeleteMapping("trackde/{trackId}")
-    public ResponseEntity<?> trackDelete(@PathVariable int trackId){
+    public ResponseEntity<?> trackDelete(@PathVariable int trackId) throws TrackNotFoundException {
       ResponseEntity responseEntity;
-      try {
+
           trackService.trackDeleteById(trackId);
           responseEntity=new ResponseEntity("Succesfull deletion of data",HttpStatus.CREATED);
-      }
-      catch (TrackNotFoundException trackNotFound){
-          responseEntity=new ResponseEntity(trackNotFound.getMessage(),HttpStatus.CONFLICT);
-      }
+
+
      return responseEntity;
   }
 
 
     @PutMapping("tracker/{trackId}")
-    public ResponseEntity<?> updateById(@PathVariable int trackId,@RequestBody Track track) {
+    public ResponseEntity<?> updateById(@PathVariable int trackId,@RequestBody Track track) throws TrackNotFoundException {
       ResponseEntity responseEntity;
-      try{
+
         trackService.updateTrack(trackId,track);
-        responseEntity= new ResponseEntity("Successfully Updated", HttpStatus.OK);}
-      catch (TrackNotFoundException trackNotException){
-          responseEntity=new ResponseEntity(trackNotException.getMessage(),HttpStatus.CONFLICT);
-      }
+        responseEntity= new ResponseEntity("Successfully Updated", HttpStatus.OK);
+
       return responseEntity;
     }
     @GetMapping("tracke/{trackName}")
-    public ResponseEntity<?> trackByName(@PathVariable("trackName") String trackName){
+    public ResponseEntity<?> trackByName(@PathVariable("trackName") String trackName) throws TrackNotFoundException {
       ResponseEntity responseEntity;
-      try{
-      trackService.getTrackByName(trackName);
-      responseEntity=new ResponseEntity("SuccessFull",HttpStatus.CREATED);}
 
-      catch(TrackNotFoundException trackNotFound){
-      responseEntity=new ResponseEntity(trackNotFound.getMessage(),HttpStatus.CONFLICT);
-    }
+      trackService.getTrackByName(trackName);
+      responseEntity=new ResponseEntity("SuccessFull",HttpStatus.CREATED);
+
+
     return responseEntity;}
 
 }
