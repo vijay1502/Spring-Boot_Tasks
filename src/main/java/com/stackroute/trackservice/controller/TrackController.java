@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "api/v1/")
+@RequestMapping(value = "api/v1")
 
 //@Request Mapping for providing the Request path to the Server
 public class TrackController {
