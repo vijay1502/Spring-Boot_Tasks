@@ -5,6 +5,7 @@ import com.stackroute.trackservice.exceptions.TrackIdAlreadyExistsException;
 import com.stackroute.trackservice.exceptions.TrackNotFoundException;
 import com.stackroute.trackservice.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,10 @@ public class TrackController {
     private TrackService trackService;
     public TrackController() {
     }
+   @Autowired
+   public void trackQualifier(@Qualifier("dummy") TrackService trackService){
+        this.trackService=trackService;
+   }
 
     @Autowired
     public TrackController(TrackService trackService) {
@@ -54,7 +59,7 @@ public class TrackController {
       ResponseEntity responseEntity;
 
       trackService.getAllTracks();
-      responseEntity=new ResponseEntity("SuccessFully Retreived All THe DATA",HttpStatus.CREATED);
+      responseEntity=new ResponseEntity(trackService.getAllTracks(),HttpStatus.CREATED);
 
       return responseEntity;
   }
@@ -64,7 +69,7 @@ public class TrackController {
       ResponseEntity responseEntity;
 
           trackService.trackDeleteById(trackId);
-          responseEntity=new ResponseEntity("Succesfull deletion of data",HttpStatus.CREATED);
+          responseEntity=new ResponseEntity(trackService.trackDeleteById(trackId),HttpStatus.CREATED);
 
 
      return responseEntity;
@@ -76,7 +81,7 @@ public class TrackController {
       ResponseEntity responseEntity;
 
         trackService.updateTrack(trackId,track);
-        responseEntity= new ResponseEntity("Successfully Updated", HttpStatus.OK);
+        responseEntity= new ResponseEntity(trackService.updateTrack(trackId,track), HttpStatus.OK);
 
       return responseEntity;
     }
@@ -85,7 +90,7 @@ public class TrackController {
       ResponseEntity responseEntity;
 
       trackService.getTrackByName(trackName);
-      responseEntity=new ResponseEntity("SuccessFull",HttpStatus.CREATED);
+      responseEntity=new ResponseEntity(trackService.getTrackByName(trackName),HttpStatus.CREATED);
 
 
     return responseEntity;}
