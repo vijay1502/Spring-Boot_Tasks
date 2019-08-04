@@ -11,6 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @PropertySource("classpath:application.properties")
+
 //Configure a Swagger Class for Posting the Project Server to the Client
 public class SwaggerConfig {
     @Bean

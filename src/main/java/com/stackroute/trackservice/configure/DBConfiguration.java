@@ -32,10 +32,10 @@ public class DBConfiguration {
     @Profile("prod")
     @Bean
     public String  prodDbConfiguraton(){
-        System.out.println("For Production");
-        System.out.println(driverClassName);
+        System.out.println("For Production through mySql");
+
         System.out.println(url);
-        return "Data Base Connection for h2";
+        return "Data Base Connection using mySql";
 
     }
 

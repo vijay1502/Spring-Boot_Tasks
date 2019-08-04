@@ -98,6 +98,16 @@ public class TrackController {
 
     return responseEntity;}
 
+    @GetMapping("tracks/{comments}")
+    public ResponseEntity<?> getTrackByComments(@PathVariable("comments") String comments) throws TrackNotFoundException {
+        ResponseEntity responseEntity;
+
+        trackService.getTrackByComments(comments);
+        responseEntity=new ResponseEntity(trackService.getTrackByComments(comments),HttpStatus.CREATED);
+
+
+        return responseEntity;}
+
 }
 
 
