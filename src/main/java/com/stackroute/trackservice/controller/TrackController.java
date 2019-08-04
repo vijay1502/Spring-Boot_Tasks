@@ -6,6 +6,7 @@ import com.stackroute.trackservice.exceptions.TrackNotFoundException;
 import com.stackroute.trackservice.service.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1/")
+
 //@Request Mapping for providing the Request path to the Server
 public class TrackController {
     private TrackService trackService;
     public TrackController() {
     }
-   @Autowired
-   public void trackQualifier(@Qualifier("dummy") TrackService trackService){
-        this.trackService=trackService;
-   }
+//   @Autowired
+//   public void trackQualifier(@Qualifier("dummy") TrackService trackService){
+//        this.trackService=trackService;
+//   }
 
     @Autowired
     public TrackController(TrackService trackService) {
