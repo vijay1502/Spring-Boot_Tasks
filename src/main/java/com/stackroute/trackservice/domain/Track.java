@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -19,7 +20,8 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @PropertySource("application.properties")
-@ConfigurationProperties(prefix = "app")
+
+
 public class Track {
     @Id
     @Column(name = "trackId")
