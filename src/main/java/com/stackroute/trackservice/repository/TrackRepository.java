@@ -12,6 +12,6 @@ public interface TrackRepository extends JpaRepository<Track, Integer> {
 
     @Query("select t from Track t where t.trackName = ?1")
     List<Track> getTrackByName(String trackName);
-    @Query(value = "select u from users u where u.trackName=?",nativeQuery = true)
-    List<Track> getTrackByComments(String comments);
+    @Query(value = "select u from users u where u.trackId=?",nativeQuery = true)
+    List<Track> getTrackById(int trackId);
 }

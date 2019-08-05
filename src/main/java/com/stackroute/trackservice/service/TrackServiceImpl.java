@@ -88,9 +88,5 @@ public class TrackServiceImpl implements TrackService {
         }
         return trackByName;
     }
-    @Override
-    public List<Track> getTrackByComments(String comments){
-        List<Track> trackByComment=trackRepository.getTrackByComments(comments);
-        return trackByComment;
-    }
+
 }
