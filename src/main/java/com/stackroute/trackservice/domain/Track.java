@@ -6,32 +6,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-@Entity
+@Document
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @PropertySource("application.properties")
-
-
 public class Track {
     @Id
-    @Column(name = "trackId")
-    @Value("trackId")
+
 
     private int trackId;
-    @Column(name = "trackName")
-    @Value("${value.trackId}")
+
     private String trackName;
-    @Column(name = "comments")
-    @Value("${value.comments}")
+
     private String comments;
 }
