@@ -73,6 +73,8 @@ public class TrackController {
         //If no track is present, then exception must be caught
         catch (Exception ex){
             responseEntity=new ResponseEntity(ex.getMessage(),HttpStatus.GONE);
+            responseEntity=new ResponseEntity(ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
         return responseEntity;
     }
@@ -88,6 +90,8 @@ public class TrackController {
         //Else catch the exception as ID not found to delete
         catch (TrackNotFoundException trackNotFound){
             responseEntity=new ResponseEntity(trackNotFound.getMessage(),HttpStatus.METHOD_NOT_ALLOWED);
+            responseEntity=new ResponseEntity(trackNotFound.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
         return responseEntity;
     }
@@ -102,7 +106,9 @@ public class TrackController {
         //else send track not found message exception
         catch (TrackNotFoundException trackNotException){
             responseEntity=new ResponseEntity(trackNotException.getMessage(),HttpStatus.CONFLICT);
+            responseEntity=new ResponseEntity(trackNotException.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
         return responseEntity;
     }
 

@@ -116,6 +116,7 @@ public class TrackControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/tracks/")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isGone())
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
                 .andDo(MockMvcResultHandlers.print());
         verify(trackService,times(1)).getAllTracks();
     }
@@ -139,6 +140,7 @@ public class TrackControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/tracks/1",track.getTrackId())
                 .contentType(MediaType.APPLICATION_JSON).content(asJsonString(track)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
                 .andDo(MockMvcResultHandlers.print());
         verify(trackService,times(2)).trackDeleteById(1);
     }
@@ -162,6 +164,7 @@ public class TrackControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/tracker/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isInternalServerError())
                 .andDo(MockMvcResultHandlers.print());
         verify(trackService,times(2)).updateTrack(1,track);
     }
