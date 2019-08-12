@@ -1,6 +1,5 @@
 package com.stackroute.trackservice.domain;
 
-import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+//Instead of creating constructor methods inside a class, we provide them noArgs and AllArgs Constructor annotations
+//@PropertySource defines the class path to use a particular resource
 @Entity
 @Data
 @NoArgsConstructor
@@ -23,6 +24,7 @@ import javax.persistence.Id;
 
 
 public class Track {
+    //@Column defines the column name in the query
     @Id
     @Column(name = "trackId")
     @Value("trackId")
